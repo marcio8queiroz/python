@@ -1,4 +1,4 @@
-def saudacao(nome="um nome qualquer"):
+def saudacao(nome="um nome qualquer é um nome qualquer"):
     print (f"olá {nome}, tudo bem?");
 
 def operacoes(a, b):
