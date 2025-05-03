@@ -3,7 +3,9 @@
 
 # definição de uma classe
 class Pessoa: 
-    populacao = 0 
+    # atributos da  classe
+    populacao = 0 # atributo estático
+    contador = 0 # atributo estático
 
     #método construtor
     def __init__(self, nome, idade): 
@@ -30,6 +32,38 @@ class Pessoa:
     def apresentar(self):
         return f"ola, meu nome eh {self.__nome}" 
 
+    # método de classe
+    # definição: Métodos que recebem como primeiro parãmetros a classe em si (cls), 
+    # permitindo manipular atributos estáticos ou criar instâncias de maneira alternativa.
+    @classmethod
+    def criar_anonimo(cls):
+        return cls("Mario", 45)
+
+    @classmethod
+    def incrementar_contador(cls):
+        cls.contador += 1;
+
+# método estático
+# definição: Métodos que não dependem de self ou cls.
+# Funcionam como funções normais dentro de uma classe, mas estão logicamente relacionados a ela.
+    @staticmethod
+    def validar_cpf(cpf):
+        if len(cpf) < 11:
+            print("CPF inválido")
+        else:
+            print("CPF válido")
+
+p = Pessoa.criar_anonimo()
+print(p.get_nome())
+
+print(Pessoa.contador)
+Pessoa.incrementar_contador()
+print(Pessoa.contador)
+Pessoa.incrementar_contador()
+print(Pessoa.contador)
+
+Pessoa.validar_cpf("123.456.78")
+
     # criando a subclasse PessoaFisica
 class PessoaFisica(Pessoa):
     def __init__(self, nome, idade, cpf):  
@@ -46,9 +80,15 @@ class PessoaJuridica(Pessoa):
       self.cnpj = cnpj
 
     # def apresentar(self):
-    #     return f"ola, meu nome eh {self.get_nome()} e meu cnpj é {self.cnpj}"
+    # return f"ola, meu nome eh {self.get_nome()} e meu cnpj é {self.cnpj}"
 
-
+# -----------------------------------------------------
+# Diferenças entre métodos de classe, instância, etc
+# -----------------------------------------------------
+# Métodos de instância: operam em dados específicos de um objeto (usam self).
+# Métodos de classe: operam no contexto da classe (usam cls).
+# Métodos estáticos: não dependem de nenhum estado (nem self nem cls).
+# Atributos estáticos: variáveis compartilhadas por todos os objetos da classe.
 
 def mostrar_apresentacao(pessoa: Pessoa):
   print(pessoa.apresentar())
