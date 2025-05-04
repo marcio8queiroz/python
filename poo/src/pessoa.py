@@ -8,8 +8,24 @@ class Pessoa:
     def __init__(self, nome, idade): 
         self.__nome = nome #self.nome = atributo de instancia
         self.__idade = idade #self.idade = atributo de instancia
+        self.contatos = []
+        self.enderecos = []
         Pessoa.populacao = Pessoa.populacao + 1;
     
+    def __str__(self):
+        return f"{self.__nome}, {self.__idade} anos, possui {len(self.contatos)} contatos"
+    
+    def adicionar_contato(self, contato):
+        self.contatos.append(contato)
+    
+    def __add__(self, value):
+        nova_pessoa = Pessoa(self.get_nome(), self.get_idade())
+        nova_pessoa.contatos = self.contatos + value.contatos
+        return nova_pessoa
+    
+    def __mul__(self, value ):
+        pass
+
     def get_nome(self):
         return self.__nome;
 
