@@ -1,3 +1,5 @@
+from src.excecoes import CpfInvalidoException
+
 from src.pessoa import Pessoa
 
 # criando a subclasse PessoaFisica
@@ -15,3 +17,7 @@ class PessoaFisica(Pessoa):
     
     def __eq__(self, value):
         return isinstance(value, PessoaFisica) and self.cpf == value.cpf
+    
+    def validar_cpf(self):
+        if len(self.cpf) != 11 or not self.cpf.isdigit():
+            raise CpfInvalidoException()
